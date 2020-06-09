@@ -109,6 +109,14 @@ const mock = [
             itemContainer.innerHTML =  `<h1>${this.item.name}</h1>`;
             const imageView = new ImageView(this.item.imageUrl, this.item.description, 'classImg');
             itemContainer.appendChild(imageView.render());
+            
+
+            const descriptionView = new DescriptionView( this.item.description);
+            itemContainer.appendChild(descriptionView.render());
+
+            const priceView = new PriceView( this.item.price + ' EUR');
+            itemContainer.appendChild(priceView.render());
+
            
             return itemContainer;
         }
@@ -125,6 +133,8 @@ const mock = [
 
         render() {
             const imageContainer = document.createElement('img');
+
+            
          
         imageContainer.setAttribute('src', this.url)   
         imageContainer.setAttribute('alt', this.description);
@@ -134,5 +144,38 @@ const mock = [
     }
     }
 
+
+    class DescriptionView extends View {
+        constructor( contenu) {
+            super();
+            this.contenu = contenu;
+            
+        }
+
+        render() {
+            const descriptionContainer = document.createElement('p');
+            descriptionContainer.innerHTML =  `<span>${this.contenu}</span>`;
+           
+        return descriptionContainer;
+    
+    }
+    }
+
+
+    class PriceView extends View {
+        constructor( prix) {
+            super();
+            this.prix = prix;
+            
+        }
+
+        render() {
+            const priceContainer = document.createElement('p');
+            priceContainer.innerHTML =  `<span>${this.prix}</span>`;
+           
+        return priceContainer;
+    
+    }
+    }
 
     new ListController()
