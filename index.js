@@ -71,7 +71,9 @@ const mock = [
     }
 
     class View {
-     render()    {}
+     render()    {
+         
+     }
 
     }
 
@@ -86,7 +88,9 @@ const mock = [
             const listContainer = document.createElement('div');
             this.list.forEach(item => {
                 const titleView = new TitleView(item);
+               
                 const childElement = titleView.render();
+               
                 console.log(childElement);
                 listContainer.appendChild(childElement);
             })
@@ -101,14 +105,34 @@ const mock = [
         }
         render()    {
             console.info('section')
-            const itemContainer = document.createElement('h1');
-            itemContainer.innerHTML =  `<span>${this.item.name}</span>`;
+            const itemContainer = document.createElement('div');
+            itemContainer.innerHTML =  `<h1>${this.item.name}</h1>`;
+            const imageView = new ImageView(this.item.imageUrl, this.item.description, 'classImg');
+            itemContainer.appendChild(imageView.render());
            
             return itemContainer;
         }
     }
 
     
+    class ImageView extends View {
+        constructor(url, description, classImg) {
+            super();
+            this.url = url;
+            this.description = description;
+            this.classImg = classImg;
+        }
+
+        render() {
+            const imageContainer = document.createElement('img');
+         
+        imageContainer.setAttribute('src', this.url)   
+        imageContainer.setAttribute('alt', this.description);
+        imageContainer.setAttribute('class', `${this.classImg}`)
+        return imageContainer;
+    
+    }
+    }
 
 
     new ListController()
