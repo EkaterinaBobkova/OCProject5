@@ -87,9 +87,9 @@ const mock = [
         render() {
             const listContainer = document.createElement('div');
             this.list.forEach(item => {
-                const titleView = new TitleView(item);
+                const itemView = new ItemView(item);
                
-                const childElement = titleView.render();
+                const childElement = itemView.render();
                
                 console.log(childElement);
                 listContainer.appendChild(childElement);
@@ -98,7 +98,7 @@ const mock = [
         }
     }
 
-    class TitleView extends View{
+    class ItemView extends View{
         constructor(item) {
             super();
             this.item = item;
@@ -106,7 +106,10 @@ const mock = [
         render()    {
             console.info('section')
             const itemContainer = document.createElement('div');
-            itemContainer.innerHTML =  `<h1>${this.item.name}</h1>`;
+
+            const titleView = new TitleView( this.item.name);
+            itemContainer.appendChild(titleView.render());
+
             const imageView = new ImageView(this.item.imageUrl, this.item.description, 'classImg');
             itemContainer.appendChild(imageView.render());
             
@@ -121,6 +124,23 @@ const mock = [
             return itemContainer;
         }
     }
+
+    class TitleView extends View {
+        constructor( name) {
+            super();
+            this.name = name;
+            
+        }
+
+        render() {
+            const titleContainer = document.createElement('h1');
+            titleContainer.innerHTML =  `<span>${this.name}</span>`;
+           
+        return titleContainer;
+    
+    }
+    }
+
 
     
     class ImageView extends View {
