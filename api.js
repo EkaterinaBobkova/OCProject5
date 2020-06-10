@@ -8,7 +8,8 @@ class Request {
 
     onReadyStateChange() {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            this.onSuccess(this.request.responseText);
+            JSON.parse(this.request.responseText);
+
     }
 }
 get(url) {
