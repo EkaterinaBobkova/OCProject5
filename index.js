@@ -57,16 +57,22 @@ const mock = [
     }
     ]
 
-
+    
 
     console.log(document.getElementById('app'));
 
     class ListController {
         constructor() {
-            const listProducts = mock;
+            
+            const api = new Api();
+            api.list (
+                function(listProducts) {
             const listView = new ListView(listProducts);
             const listElement = listView.render();
             document.getElementById('app').appendChild(listElement);
+                }
+            )
+            
         }
     }
 
