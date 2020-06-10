@@ -8,16 +8,23 @@ class Request {
 
     onReadyStateChange() {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            JSON.parse(this.request.responseText);
+            this.onSuccess(JSON.parse(this.request.responseText));
+            console.log("Connection established");
 
+    }else{
+        console.log("Error connection API");
     }
 }
 get(url) {
-    this.request.open('get', url);
+    this.request.open('GET', url, true);
+    this.request.setRequestHeader('Content-Type', 'application/json')
     this.request.send();
 }
 
 }
+
+
+
 
 
 class Api {
