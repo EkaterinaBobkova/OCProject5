@@ -127,7 +127,7 @@ const mock = [
             const priceView = new PriceView( this.item.price/100 + ' €');
             itemContainer.appendChild(priceView.render());
 
-            const buttonView = new ButtonView( this.item_id);
+            const buttonView = new ButtonView( this.item._id);
             itemContainer.appendChild(buttonView.render());
 
 
@@ -139,20 +139,20 @@ const mock = [
     }
 
     class ButtonView extends View {
-        constructor( name) {
+        constructor( _id) {
             super();
-            this.name = name;
+            this._id = _id;
             
         }
 
         render() {
             const buttonContainer = document.createElement('a');
             
-            buttonContainer.id = "lien";
-            buttonContainer.href = 'produit.html?id=' + this._id;
+            buttonContainer.id = "link";
+            buttonContainer.href = 'produit.html?&id=' + this._id;
          
             buttonContainer.textContent = "Fiche produit";
-            // buttonContainer.setAttribute('class', `${this.classLink}`)
+          
            
         return buttonContainer;
     

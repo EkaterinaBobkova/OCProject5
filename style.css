@@ -54,7 +54,7 @@ div {
 }
 
 h1{
-    color: rgb(6, 18, 73);
+    color: rgb(39, 10, 59);
 }
 
 a {
@@ -86,7 +86,7 @@ p {
 
 
   
- #lien {
+ #link {
     display:block;
     width:150px;
     line-height:50px;
@@ -99,7 +99,16 @@ p {
     transform: scale(1);
     transition: all 1s ease-in-out;
     }
-    #lien:hover {
+    #link:hover {
     background:url(images/bouton-noir-2.png)  no-repeat;
     transform: scale(1.1);
     }
+
+
+    footer {
+        text-align: center;
+    }
+
+
+
+   
