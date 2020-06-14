@@ -124,7 +124,7 @@ const mock = [
             const descriptionView = new DescriptionView( this.item.description);
             itemContainer.appendChild(descriptionView.render());
 
-            const priceView = new PriceView( this.item.price + ' EUR');
+            const priceView = new PriceView( this.item.price/100 + ' €');
             itemContainer.appendChild(priceView.render());
 
             const buttonView = new ButtonView( this.item_id);
