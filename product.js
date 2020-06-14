@@ -1,90 +1,174 @@
 
+    console.log(document.getElementById('product'));
 
-let params = new URLSearchParams(document.location.search);
-console.log(params);
-let id = params.get("id");
-console.log('id= ' + id);
+    
 
-let _id = id;
+ 
+    class DetailController {
+        constructor() {
+            
+            const api = new Api();
+            api.details (
+                function(id) {
+            const listView = new ListView(id);
+            const listElement = listView.render();
+            document.getElementById('product').appendChild(listElement);
+                }
+            )
+            
+        }
+    }
 
 
 
-//    Connexion à l'API
-const get = function (url) {
-    return new Promise(function (onSuccess, onError) {
-      const xhr = new XMLHttpRequest();
+    class View {
+     render()    {
+         
+     }
+
+    }
+
+
+
+    class ListView extends View {
+        constructor(list) {
+            super();
+            this.list = list;
+        }
+        render() {
+            const listContainer = document.createElement('div');
+            this.list.forEach(item => {
+                const itemView = new ItemView(item);
+               
+                const childElement = itemView.render();
+               
+                console.log(childElement);
+                listContainer.appendChild(childElement);
+            })
+            return listContainer;
+        }
+    }
+
+    class ItemView extends View{
+        constructor(item) {
+            super();
+            this.item = item;
+        }
+        render()    {
+            console.info('section')
+            const itemContainer = document.createElement('div');
+            itemContainer.className = 'box';
+
+            const titleView = new TitleView( this.item.name);
+            itemContainer.appendChild(titleView.render());
+
+            const imageView = new ImageView(this.item.imageUrl, this.item.description, 'classImg');
+            itemContainer.appendChild(imageView.render());
+            
+
+            const descriptionView = new DescriptionView( this.item.description);
+            itemContainer.appendChild(descriptionView.render());
+
+            const priceView = new PriceView( this.item.price/100 + ' €');
+            itemContainer.appendChild(priceView.render());
+
+           
+
+
+        
+
+           
+            return itemContainer;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    class TitleView extends View {
+        constructor( name) {
+            super();
+            this.name = name;
+            
+        }
+
+        render() {
+            const titleContainer = document.createElement('h1');
+            titleContainer.innerHTML =  `<span>${this.name}</span>`;
+           
+        return titleContainer;
+    
+    }
+    }
+
+
+    
+    class ImageView extends View {
+        constructor(url, description, classImg) {
+            super();
+            this.url = url;
+            this.description = description;
+            this.classImg = classImg;
+        }
+
+        render() {
+            const imageContainer = document.createElement('img');
+
+            
+         
+        imageContainer.setAttribute('src', this.url)   
+        imageContainer.setAttribute('alt', this.description);
+        imageContainer.setAttribute('class', `${this.classImg}`)
+        return imageContainer;
+    
+    }
+    }
+
+
+    class DescriptionView extends View {
+        constructor( contenu) {
+            super();
+            this.contenu = contenu;
+            
+        }
+
+        render() {
+            const descriptionContainer = document.createElement('p');
+            descriptionContainer.innerHTML =  `<span>${this.contenu}</span>`;
+           
+        return descriptionContainer;
+    
+    }
+    }
+
+
+    class PriceView extends View {
+        constructor( prix) {
+            super();
+            this.prix = prix;
+            
+        }
+
+        render() {
+            const priceContainer = document.createElement('p');
+            priceContainer.innerHTML =  `<span>${this.prix}</span>`;
+           
+        return priceContainer;
+    
+    }
+    }
+
+
+    
+    
+
   
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            onSuccess(xhr.responseText);
-          } else {
-            onError(xhr);
-          };
-        };
-      };
 
-      xhr.open('GET','http://localhost:3000/api/cameras' + _id, true);
-     
-      xhr.send();
-    });
-  };
-
-let catchError = function(e){
-  console.error('Error AJAX', e);
-};
-
-//    Récupération des données
-get();
-let camera = function () {
-  return get('http://localhost:3000/api/cameras' + _id).then(function (response) {
-    let cameras = JSON.parse(response);
-    return cameras;
-  });
-};
-
-// Affiche la liste des articles
-
-camera().then(function(cameras){
-console.log(cameras);
-
-cameras.forEach( camera=>{
-
-  let article = document.createElement('article');
-  let image = document.createElement('img');
-  image.src =  camera.imageUrl;
-  let div = document.createElement('div');
-  let nom = document.createElement('h3');
-  nom.textContent = camera.name;
-  let prix = document.createElement('h4');
-  prix.textContent = 'Prix :';
-  let price = document.createElement('p');
-  price.textContent = camera.price/100 + ' €';
-  let desc = document.createElement('h4');
-  desc.textContent = 'Description :';
-  let description = document.createElement('p');
-  description.textContent = camera.description;
-  let id = camera._id;
-
-  let link = document.createElement('a');
-  link.id = "lien";
-  link.href = 'produit.html?id=' + camera._id;
-  link.textContent = "fiche du produit";
-
-  // mise en place des éléments 
-
-  app.appendChild(article);
-  article.appendChild(nom);
-  article.appendChild(image);
-  article.appendChild(div);
-  div.appendChild(prix);
-  div.appendChild(price);
-  div.appendChild(desc);
-  div.appendChild(description);
-  div.appendChild(link)
-  
-  console.log(camera);
-});
-});
-
-  
+    new DetailController()

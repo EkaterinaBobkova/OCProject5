@@ -76,6 +76,11 @@ const mock = [
         }
     }
 
+ 
+   
+
+
+
     class View {
      render()    {
          
@@ -245,3 +250,5 @@ const mock = [
     
 
     new ListController()
+
+
