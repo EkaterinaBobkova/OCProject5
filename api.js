@@ -1,14 +1,14 @@
 class Request {
     constructor(onSuccess,onError) {
         this.request = new XMLHttpRequest();
-        this.request.onreadystatechange = this.onReadyStateChange.bind(this.onReadyStateChange);
+        this.request.onreadystatechange = this.onReadyStateChange.bind(this, this.request);
         this.onSuccess = onSuccess;
         this.onError = onError;
     }
 
-    onReadyStateChange() {
-        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            this.onSuccess(JSON.parse(this.request.responseText));
+    onReadyStateChange(request) {
+        if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+            this.onSuccess(JSON.parse(request.responseText));
             console.log("Connection established");
 
     }else{
@@ -20,9 +20,7 @@ get(url) {
     this.request.setRequestHeader('Content-Type', 'application/json')
     this.request.send();
 }
-
 }
-
 
 
 
@@ -34,6 +32,4 @@ class Api {
         })
         apiRequest.get("http://localhost:3000/api/cameras");
     }
- 
-
 }
