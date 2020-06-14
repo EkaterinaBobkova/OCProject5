@@ -112,6 +112,7 @@ const mock = [
         render()    {
             console.info('section')
             const itemContainer = document.createElement('div');
+            itemContainer.className = 'box';
 
             const titleView = new TitleView( this.item.name);
             itemContainer.appendChild(titleView.render());

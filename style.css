@@ -6,7 +6,7 @@ body {
 	padding: 0;
 	font-size: 16px;
 	line-height: 1.5;
-    background: rgb(238, 198, 241);
+    background:ivory;
     
 }
 
@@ -44,6 +44,13 @@ div {
    flex-wrap: wrap;
    margin: 30px;
   
+}
+
+.box {
+    background-color: rgb(238, 198, 241);
+    box-shadow: 1px 1px 15px #555;
+    padding: 10px;
+    border-radius: 40px;
 }
 
 h1{
