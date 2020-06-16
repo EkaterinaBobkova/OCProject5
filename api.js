@@ -42,10 +42,10 @@ class Api {
         apiRequest.get("http://localhost:3000/api/cameras");
     }
 
-    details(callback,_id){
+    details(callback){
         const apiRequest= new Request(function(response) {
             callback(response);
         })
-        apiRequest.get("http://localhost:3000/api/cameras/"+_id);
+        apiRequest.get("http://localhost:3000/api/cameras/"+id);
     }
 }

@@ -67,7 +67,7 @@ const mock = [
             const api = new Api();
             api.list (
                 function(listProducts) {
-            const listView = new ListView(listProducts);
+            const listView = new ListView(listProducts,'listPhotos');
             const listElement = listView.render();
             document.getElementById('app').appendChild(listElement);
                 }
@@ -75,10 +75,6 @@ const mock = [
             
         }
     }
-
- 
-   
-
 
 
     class View {
@@ -91,9 +87,10 @@ const mock = [
 
 
     class ListView extends View {
-        constructor(list) {
+        constructor(list,listPhotos) {
             super();
             this.list = list;
+            this.listPhotos = listPhotos;
         }
         render() {
             const listContainer = document.createElement('div');
@@ -104,6 +101,7 @@ const mock = [
                
                 console.log(childElement);
                 listContainer.appendChild(childElement);
+                listContainer.setAttribute('class', `${this.listPhotos}`)
             })
             return listContainer;
         }
@@ -134,6 +132,7 @@ const mock = [
 
             const buttonView = new ButtonView( this.item._id);
             itemContainer.appendChild(buttonView.render());
+            
 
 
         
@@ -143,8 +142,11 @@ const mock = [
         }
     }
 
+    
+
+
     class ButtonView extends View {
-        constructor( _id) {
+        constructor(_id) {
             super();
             this._id = _id;
             
@@ -156,7 +158,7 @@ const mock = [
             buttonContainer.id = "link";
             buttonContainer.href = 'produit.html?&id=' + this._id;
          
-            buttonContainer.textContent = "Fiche produit";
+            buttonContainer.textContent = "Acheter";
           
            
         return buttonContainer;

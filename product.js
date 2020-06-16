@@ -9,10 +9,10 @@
             
             const api = new Api();
             api.details (
-                function(id) {
-            const listView = new ListView(id);
-            const listElement = listView.render();
-            document.getElementById('product').appendChild(listElement);
+                function(oneProduct) {
+            const itemView = new ItemView(oneProduct);
+            const itemElement = itemView.render();
+            document.getElementById('product').appendChild(itemElement);
                 }
             )
             
@@ -20,33 +20,11 @@
     }
 
 
-
     class View {
      render()    {
          
      }
 
-    }
-
-
-
-    class ListView extends View {
-        constructor(list) {
-            super();
-            this.list = list;
-        }
-        render() {
-            const listContainer = document.createElement('div');
-            this.list.forEach(item => {
-                const itemView = new ItemView(item);
-               
-                const childElement = itemView.render();
-               
-                console.log(childElement);
-                listContainer.appendChild(childElement);
-            })
-            return listContainer;
-        }
     }
 
     class ItemView extends View{
