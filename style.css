@@ -15,10 +15,13 @@ body {
     height:70px;
     position: absolute;
     top:0; left:0; 
-    padding: 0;
-    margin: 0;
-    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
     background-color: rgb(39, 10, 59);
+    
 }
 
 
@@ -26,15 +29,47 @@ a{
    
     display: flex;
   justify-content: center;
+  
 }
 
 .logo {
+    display: flex;
+    flex-direction:row;
+    align-items: flex-start;
     color: #ffff;
-    
     font-size: 40px;
     font-weight: bold;
 
 }
+
+.logo:hover{
+    color:#ffff;
+}
+
+.panier {
+    color:#ffff;
+    font-size: 1.5em;
+}
+
+.panier:hover{
+    color:#ffff;
+}
+
+
+
+section {
+    display: block;
+}
+
+.img-fond{
+    
+    max-width: 100%;
+   
+    position: absolute;
+    top:70px; left:0; 
+    height: 80px;
+}
+
 
 div {
     display: flex;
