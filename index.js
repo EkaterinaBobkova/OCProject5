@@ -95,7 +95,7 @@ const mock = [
         render() {
             const listContainer = document.createElement('div');
             this.list.forEach(item => {
-                const itemView = new ItemView(item);
+                const itemView = new ItemView(item, "card");
                
                 const childElement = itemView.render();
                
@@ -108,14 +108,15 @@ const mock = [
     }
 
     class ItemView extends View{
-        constructor(item) {
+        constructor(item,card) {
             super();
             this.item = item;
+            this.card = card;
         }
         render()    {
             console.info('section')
             const itemContainer = document.createElement('div');
-            itemContainer.className = 'box';
+            
 
             const titleView = new TitleView( this.item.name);
             itemContainer.appendChild(titleView.render());
@@ -133,6 +134,7 @@ const mock = [
             const buttonView = new ButtonView( this.item._id);
             itemContainer.appendChild(buttonView.render());
             
+            itemContainer.setAttribute('class', `${this.card}`)
 
 
         

@@ -28,26 +28,59 @@
 /*Product boxes*/
 
 .container {
+    padding: 10px;
     display: flex;
     flex-direction: row;
-    margin-top: 0;
+   
 }
 
-div {
+
+.containerProduct{
     display: flex;
-    flex-direction: column;
     justify-content: center;
-   align-items: center;
-   flex-wrap: wrap;
-   margin: 30px;
-  
+    
 }
 
-.box {
+#product.card{
+    width: 400px;
+}
+
+
+
+div.listPhotos  {
+    display: flex;
+   
+  
+   text-align: center;
+ 
+   flex-wrap: wrap;
+   justify-content: space-around;
+   
+}
+
+
+
+.card {
+   
+    
     background-color: rgb(238, 198, 241);
     box-shadow: 1px 1px 15px #555;
-    padding: 10px;
+    padding: 20px;
     border-radius: 30px;
+    margin: 10px;
+    align-items: center;
+    width: 400px;
+  
+
+}
+
+
+@media screen and (max-width: 800px)  {
+    .card {
+        width: 300px;
+
+    }
+
 }
 
 h1{

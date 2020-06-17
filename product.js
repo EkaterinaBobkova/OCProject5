@@ -10,7 +10,7 @@
             const api = new Api();
             api.details (
                 function(oneProduct) {
-            const itemView = new ItemView(oneProduct);
+            const itemView = new ItemView(oneProduct, "card");
             const itemElement = itemView.render();
             document.getElementById('product').appendChild(itemElement);
                 }
@@ -28,14 +28,15 @@
     }
 
     class ItemView extends View{
-        constructor(item) {
+        constructor(item,card) {
             super();
             this.item = item;
+            this.card = card;
         }
         render()    {
             console.info('section')
             const itemContainer = document.createElement('div');
-            itemContainer.className = 'box';
+        
 
             const titleView = new TitleView( this.item.name);
             itemContainer.appendChild(titleView.render());
@@ -49,6 +50,7 @@
 
             const priceView = new PriceView( this.item.price/100 + ' €');
             itemContainer.appendChild(priceView.render());
+            itemContainer.setAttribute('class', `${this.card}`)
 
            
 
