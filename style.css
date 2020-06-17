@@ -1,16 +1,17 @@
 
-
-
-body {
+   body {
     margin: 10px;
-	padding: 0;
-	font-size: 16px;
-	line-height: 1.5;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.5;
     background:ivory;
+    margin:0;
     
 }
 
-.nav {
+/*Navigation*/
+
+   .navbar {
     width: 100%;
     height:70px;
     position: absolute;
@@ -24,52 +25,13 @@ body {
     
 }
 
+/*Product boxes*/
 
-a{
-   
+.container {
     display: flex;
-  justify-content: center;
-  
+    flex-direction: row;
+    margin-top: 0;
 }
-
-.logo {
-    display: flex;
-    flex-direction:row;
-    align-items: flex-start;
-    color: #ffff;
-    font-size: 40px;
-    font-weight: bold;
-
-}
-
-.logo:hover{
-    color:#ffff;
-}
-
-.panier {
-    color:#ffff;
-    font-size: 1.5em;
-}
-
-.panier:hover{
-    color:#ffff;
-}
-
-
-
-section {
-    display: block;
-}
-
-.img-fond{
-    
-    max-width: 100%;
-   
-    position: absolute;
-    top:70px; left:0; 
-    height: 80px;
-}
-
 
 div {
     display: flex;
@@ -85,43 +47,53 @@ div {
     background-color: rgb(238, 198, 241);
     box-shadow: 1px 1px 15px #555;
     padding: 10px;
-    border-radius: 40px;
+    border-radius: 30px;
 }
 
 h1{
     color: rgb(39, 10, 59);
+    text-align: center;
 }
 
-a {
-    text-decoration: none;
-}
-p {
-    color: rgb(2, 8, 36);
-    font-weight: bold;
+hr{
+    margin: 10px auto;
+    width: 50%;
+    height: 2px;
     text-align: center;
-    font-size: 15px;
+    background-color: rgb(39, 10, 59);
+    border: none;
+  }
+
+.products{
+   
+    margin-top:0;
 }
+
+
+/*Images appareils photo*/
+
 .classImg {
+    padding-top: 15px;
+    padding-bottom: 10px;
     height: 150px;
     width: 200px;
  
   }
  
 
-
     @media screen and (min-width: 1200px)  {
         .classImg:hover {
             cursor: zoom-in;
-            transform: translateY(-10px) scale(1.2);
+            transform: translateY(-9px) scale(1.2);
             transition: all 0.35s ease-in-out;
 
         }
   
 }
 
+/*Button*/
 
-  
- #link {
+#link {
     display:block;
     width:150px;
     line-height:50px;
@@ -139,14 +111,17 @@ p {
     transform: scale(1.1);
     }
 
+/*Footer part*/
 
-    footer {
-        text-align: center;
-    }
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    height: 60px;
+  
+    background-color: rgb(39, 10, 59);
+}
 
 
 
-   .listPhotos {
-       display: flex;
-      
-   }

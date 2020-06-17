@@ -1,46 +1,60 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content="Page de personnalisation du produit">
-  
-    <title>Orinoco - Produits</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-  
-   
-  </head>
+  <meta name="robots" content="index,follow">
 
-  <body>
-    <header class="header">
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Orinoco e-commerce des appareils photo" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ekaterinabobkova.github.io/OCProject5/" />
+  <meta property="og:description" content="Orinoco: site e-commerce des appareils photos vintage" />
 
-      <div class="container"> 
-          <nav class="nav">
-              <p><a class="logo text-decoration-none" href="index.html" title="Page d'accueil">Orinoco</a><p>
-              <p><a class= "panier text-decoration-none" href="panier.html">Mon panier (0)</a></p>	
-          </nav> 
-  
-  
-      </header>
 
-  <main>
-    
-    <div id="product"></div>
-  </main> 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+
+  <title>Orinoco Site E-commerce des appareils photo</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <p><a class="text-white h2 ml-md-5 text-decoration-none" href="index.html" title="Page d'accueil">Orinoco</a>
+        <p>
+          <p class="text-white h3 mr-md-5"><a class="panier text-white text-decoration-none"
+              href="front/panier.html">Mon panier</a></p>
+    </nav>
+  </header>
+
+
+  <section id="presentation">
+    <img src="images/fondimg.jpg" class="img-fluid" alt="appareil photo vintage">
+
+  </section>
+  <div class="container">
+    <section class="products">
+      <div id="product" class="row">
+
+        <!-- Partie dynamique JS-->
+      </div>
+    </section>
+  </div>
+
   <footer>
     Cameras Orinoco || 2020
   </footer>
+
   <script src="api.js"></script>
   <script src="product.js"></script>
 
- 
- 
+</body>
 
-
-  </body>
 </html>
-
-
