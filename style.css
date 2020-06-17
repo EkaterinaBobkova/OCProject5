@@ -43,6 +43,7 @@
 
 #product.card{
     width: 400px;
+   
 }
 
 
@@ -70,6 +71,7 @@ div.listPhotos  {
     margin: 10px;
     align-items: center;
     width: 400px;
+    text-align: center;
   
 
 }
@@ -144,6 +146,25 @@ hr{
     transform: scale(1.1);
     }
 
+
+    #linkProduct{
+        display:block;
+        width:150px;
+        line-height:50px;
+        font-size: 1em;
+        text-align:center;
+        vertical-align:middle;
+        background:url(images/bouton-noir.png)  no-repeat;
+        color:white;
+        text-decoration:none;
+        transform: scale(1);
+        transition: all 1s ease-in-out;
+        }
+        #linkProduct:hover {
+        background:url(images/bouton-noir-2.png)  no-repeat;
+        transform: scale(1.1);
+        }
+    }
 /*Footer part*/
 
 footer {

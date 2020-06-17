@@ -51,6 +51,8 @@
             const priceView = new PriceView( this.item.price/100 + ' €');
             itemContainer.appendChild(priceView.render());
             itemContainer.setAttribute('class', `${this.card}`)
+            const buttonView = new ButtonView( this.item._id);
+            itemContainer.appendChild(buttonView.render());
 
            
 
@@ -144,6 +146,29 @@
     
     }
     }
+
+    class ButtonView extends View {
+        constructor(_id) {
+            super();
+            this._id = _id;
+            
+        }
+
+        render() {
+            const buttonContainer = document.createElement('a');
+            
+            buttonContainer.id = "linkProduct";
+            buttonContainer.href = 'panier.html?&id=' + this._id;
+         
+            buttonContainer.textContent = "Ajouter au panier";
+          
+           
+        return buttonContainer;
+    
+    }
+    }
+
+
 
 
     
