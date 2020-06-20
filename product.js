@@ -10,7 +10,10 @@
             const api = new Api();
             api.details (
                 function(oneProduct) {
-            const itemView = new ItemView(oneProduct, "card");
+            const itemView = new ItemView(oneProduct, "card", (forms) => {
+                const optionValue = forms.selectOption.value;
+                console.log(optionValue)
+            });
             const itemElement = itemView.render();
             document.getElementById('product').appendChild(itemElement);
                 }
@@ -28,10 +31,11 @@
     }
 
     class ItemView extends View{
-        constructor(item,card) {
+        constructor(item,card,onSubmit) {
             super();
             this.item = item;
             this.card = card;
+            this.onSubmit = onSubmit;
         }
         render()    {
             console.info('section')
@@ -50,15 +54,59 @@
 
             const priceView = new PriceView( this.item.price/100 + ' €');
             itemContainer.appendChild(priceView.render());
-            itemContainer.setAttribute('class', `${this.card}`)
-            const buttonView = new ButtonView( this.item._id);
-            itemContainer.appendChild(buttonView.render());
+            itemContainer.setAttribute('class', `${this.card}`);
+            
 
-           
+
+
+            // lenses choise
+        const labelOption = document.createElement("label"); 
+        labelOption.setAttribute("for","option_select"); 
+        labelOption.textContent = "Choisissez l'objectif :"; 
+        const selectOption = document.createElement("select"); 
+        selectOption.setAttribute("name","option_select"); 
+        selectOption.setAttribute("class","form-control mb-3 w-25");
+        for (let lense of this.item.lenses){ 
+            var newOption = document.createElement("option"); 
+            var newContent = document.createTextNode(lense); 
+            newOption.appendChild(newContent);
+            selectOption.appendChild(newOption); 
+        };
+
+
+
+        const formContainer = document.createElement('form')
+
+
+      
+
+          
+            const buttonContainer = document.createElement('button')
+            buttonContainer.addEventListener('click', () => {
+                this.onSubmit({
+                    form:formContainer,
+                    selectOption: selectOption,
+                })
+            })
+
+
+
+
+
+
+
+            
+
+            itemContainer.appendChild(labelOption); 
+            itemContainer.appendChild(selectOption); 
 
 
         
 
+            const buttonView = new ButtonView( this.item._id);
+            itemContainer.appendChild(buttonView.render());
+         
+           
            
             return itemContainer;
         }
@@ -161,6 +209,9 @@
             buttonContainer.href = 'panier.html?&id=' + this._id;
          
             buttonContainer.textContent = "Ajouter au panier";
+
+
+            
           
            
         return buttonContainer;
