@@ -1,7 +1,34 @@
 
     console.log(document.getElementById('product'));
 
-    
+        
+class ListStorage {
+    constructor(listName = "list") {
+        this.listName = listName;
+        this.list = {}
+        this.load();
+    }
+    add(key, value) {
+        this.list[key] = value;
+        this.save();
+    }
+    delete(key) {
+        delete this.list[key]
+        this.save();
+    }
+    save() {
+        localStorage.setItem(this.listName, JSON.stringify(this.list));
+    }
+    load() {
+        this.list = JSON.parse(localStorage.getItem(this.listName)) || {};
+    }
+}
+
+TEST = new ListStorage();
+
+//USAGE
+// TEST.add('item_id', item)
+// TEST.delete('item_id')
 
  
     class DetailController {
@@ -105,8 +132,13 @@
 
             const buttonView = new ButtonView( this.item._id);
             itemContainer.appendChild(buttonView.render());
+
+            const idLS = this.item._id; 
+        const priceLS = this.item.price; 
+        itemContainer.addEventListener("click", function(event){ 
+            localStorage.setItem(idLS,priceLS);
          
-           
+        });
            
             return itemContainer;
         }
@@ -209,6 +241,8 @@
             buttonContainer.href = 'panier.html?&id=' + this._id;
          
             buttonContainer.textContent = "Ajouter au panier";
+
+            
 
 
             
