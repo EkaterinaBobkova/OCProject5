@@ -1,38 +1,19 @@
 console.log(document.getElementById('productOrder'));
 
-class ListStorage {
-    constructor(listName = "list") {
-        this.listName = listName;
-        this.list = {}
-        this.load();
-    }
-    add(key, value) {
-        this.list[key] = value;
-        this.save();
-    }
-    delete(key) {
-        delete this.list[key]
-        this.save();
-    }
-    save() {
-        localStorage.setItem(this.listName, JSON.stringify(this.list));
-    }
-    load() {
-        this.list = JSON.parse(localStorage.getItem(this.listName)) || {};
-    }
-}
-
 
 
  
 class PanierController {
     constructor() {
         
+       this.storage = new ListStorage();
+       console.log(this.storage.list);
         const api = new Api();
         api.details (
-            function(oneProduct) {
-        const itemViewPanier = new ItemViewPanier(oneProduct, "order");
-        const itemElement = itemViewPanier.render();
+            (item) => {
+    
+        const panierView = new PanierView(item, this.storage.list);
+        const itemElement = panierView.render();
         
         document.getElementById('productOrder').appendChild(itemElement);
             }
@@ -50,25 +31,21 @@ class View {
 }
 
 
-class ItemViewPanier { 
-    constructor(item,order) { 
+
+
+
+
+
+
+class PanierView { 
+    constructor(item) { 
         this.item = item; 
-        this.order = order;
+        
     }
     render() { 
         const price = new PriceView(this.item.price).render(); 
         const itemContainer = document.createElement("div"); 
        
-        
-
-        const listStorage = new ListStorage();
-       
-
-        // //USAGE
-        // cart.add('item_id', item);
-        // cart.delete('item_id');
-
-
         itemContainer.innerHTML = `<p>${this.item.name} (${price} €)</p>`;  
 
         itemContainer.setAttribute('class', `${this.order}`);
