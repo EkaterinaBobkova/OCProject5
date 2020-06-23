@@ -85,6 +85,7 @@ class ItemViewPanier {
             event.stopPropagation(); 
             });
            
+            
 
         return itemContainer; 
     } 
@@ -97,8 +98,8 @@ class PriceView {
         this.prix = prix; 
     }
     render(){
-        const num = this.prix;
-        const numberToString = num.toString(); 
+        const number = this.prix;
+        const numberToString = number.toString(); 
         const price = numberToString.replace("00", ",00"); 
         return price;
     }
