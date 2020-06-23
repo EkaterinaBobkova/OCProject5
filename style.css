@@ -245,6 +245,17 @@ button {
 }
 
 
+a {
+    color: rgb(66, 8, 42);
+    font-weight: bold;
+    font-size: 1em;
+   
+}
+
+a:hover {
+    color:  rgb(21, 1, 22);
+}
+
 
 .btn {
     background-color: hsl(280, 63%, 22%) !important;

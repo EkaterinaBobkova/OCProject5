@@ -80,62 +80,14 @@ class ItemViewPanier {
         const productId = this.item._id; 
         buttonPanier.addEventListener("click", function(event){ 
             localStorage.removeItem(productId); 
-            window.history.go(); 
+            // window.history.go(); 
+            itemContainer.textContent="Votre panier est vide"; 
             event.stopPropagation(); 
             });
            
 
         return itemContainer; 
     } 
-}
-
-
-
-class ItemPanierView {
-    constructor(listeCommande, onSubmit=()=>{}) { 
-        this.listeCommande = listeCommande; 
-        this.form = document.getElementById("form"); 
-        this.form.addEventListener("submit" , function(event){ 
-            const contact= {};
-            contact.firstName = form.elements.firstName.value;
-            contact.lastName = form.elements.lastName.value;
-            contact.address = form.elements.address.value;
-            contact.city = form.elements.city.value;
-            contact.email = form.elements.email.value;
-            event.preventDefault(); 
-            event.stopPropagation();
-            onSubmit(contact); 
-            
-        });
-    }
-    render() { 
-        const itemPanierContainer = document.createElement("div"); 
-                itemPanierContainer.setAttribute("class", "card mb-3 text-center panier"); 
-        const prixTotalItemContainer = document.createElement("div"); 
-        prixTotalItemContainer.setAttribute("class", "mb-3 text-center");
-        const prixTotal = []; 
-        for (let item of this.listeCommande){ 
-            itemPanierContainer.appendChild(new ItemViewPanier(item).render()); 
-                prixTotal.push(item.price);  
-              
-            };
-        if (prixTotal.length >0){
-            const reducer = (accumulator, currentValue)=> accumulator + currentValue; 
-            const totalCommande = prixTotal.reduce(reducer); 
-            
-            const totalPrice = new PriceView(totalCommande).render();
-            prixTotalItemContainer.innerHTML = `Total de la commande = ${totalPrice} €`; 
-            itemPanierContainer.appendChild(prixTotalItemContainer); 
-        } else {
-            itemPanierContainer.textContent="Votre panier est vide"; 
-            const form = document.getElementById("form");
-            form.style.display="none";
-        };
-
-        return itemPanierContainer; 
-    }
-
-
 }
 
 
