@@ -106,12 +106,7 @@ class ItemView extends View {
         itemContainer.appendChild(buttonContainer);
         buttonContainer.textContent = 'Ajout panier';
 
-        const idLS = this.item._id;
-        const priceLS = this.item.price;
-        itemContainer.addEventListener("click", function (event) {
-            localStorage.setItem(idLS, priceLS);
-
-        });
+       
 
         return itemContainer;
     }
