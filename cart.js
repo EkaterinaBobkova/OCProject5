@@ -11,6 +11,7 @@ class CartController {
        
     
         const cartView = new CartView(this.storage.list, 'order');
+        
         const itemElement = cartView.render();
         
         document.getElementById('productOrder').appendChild(itemElement);
@@ -43,10 +44,25 @@ class CartView extends View{
         
     }
     render() { 
-        // const price = new PriceView(this.item.price).render(); 
-        const itemContainer = document.createElement("div"); 
        
-        itemContainer.innerHTML = `<p>${this.item.name} (${this.item.price} €)</p>`;  
+        const itemContainer = document.createElement("div"); 
+
+        itemContainer.innerHTML= '';
+        for(let i=0; i<localStorage.length; i++) {
+            let key = localStorage.key(i);
+            
+        const name = this.list[i].name;
+		const lenses = this.list[i].lenses;
+		const price = this.list[i].price;
+		const _id = this.list[i]._id;
+          }
+       
+        itemContainer.innerHTML = 
+        `<tr>
+        <td>${name}</td>
+        <td>${lenses}</td>
+        <td>${price}€</td>`
+        
 
         itemContainer.setAttribute('class', `${this.order}`);
         // button to delete item
