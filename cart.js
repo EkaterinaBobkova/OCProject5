@@ -3,7 +3,7 @@ console.log(document.getElementById('productOrder'));
 
 
  
-class cartController {
+class CartController {
     constructor() {
         
        this.storage = new ListStorage();
@@ -91,4 +91,4 @@ class CartView extends View{
 
 
 
-new cartController()
+new CartController()
