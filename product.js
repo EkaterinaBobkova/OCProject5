@@ -17,7 +17,7 @@ class DetailController {
                         option:  optionValue 
 
                     })
-                    document.location.href = "panier.html";
+                    document.location.href = "cart.html";
                 });
                 const itemElement = itemView.render();
                 document.getElementById('product').appendChild(itemElement);
@@ -206,7 +206,7 @@ class ButtonView extends View {
         const buttonContainer = document.createElement('a');
 
         buttonContainer.id = "linkProduct";
-        buttonContainer.href = 'panier.html?&id=' + this._id;
+        buttonContainer.href = 'cart.html?&id=' + this._id;
 
         buttonContainer.textContent = "Ajouter au panier";
 
