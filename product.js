@@ -104,6 +104,7 @@ class ItemView extends View {
 
         const buttonView = new ButtonView(this.item._id);
         itemContainer.appendChild(buttonContainer);
+        buttonContainer.id = "link";
         buttonContainer.textContent = 'Ajout panier';
 
        
