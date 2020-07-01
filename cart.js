@@ -2,30 +2,34 @@ console.log(document.getElementById('productOrder'));
 
 
 
- 
+
 class CartController {
     constructor() {
-        
-       this.storage = new ListStorage();
-       console.log(this.storage.list);
-       
-    
-        const cartView = new CartView(this.storage.list, 'order');
-        
-        const itemElement = cartView.render();
-        
-        document.getElementById('productOrder').appendChild(itemElement);
-            
-        
-        
+
+        this.storage = new ListStorage();
+        const cartView = new CartView(this.storage, 'order');
+
+        const items = cartView.render();
+
+        let tt = this;
+        items.addEventListener('click', function (e) {
+            var elem = e.target;
+            if (elem.tagName.toLowerCase() === 'button') {
+                elem.textContent = 'Votre panier est vide';
+                e.stopPropagation(); 
+
+                tt.storage.delete(elem.value);
+                document.location.href = 'cart.html';
+            }
+        })
+
+        document.getElementById('productOrder').appendChild(items);
     }
 }
 
 
 class View {
- render()    {
-     
- }
+    render() { }
 
 }
 
@@ -36,74 +40,60 @@ class View {
 
 
 
-class CartView extends View{ 
-    constructor(item, order) { 
+class CartView extends View {
+    constructor(storage, order) {
         super();
-        this.item = item; 
-        this.order = order; 
-        
+        this.list = storage.list;
+        this.order = order;
+
     }
-    render() { 
-       
-        const itemContainer = document.createElement("div"); 
+    render() {
 
-        itemContainer.innerHTML= '';
-        for(let i=0; i<localStorage.length; i++) {
-            let key = localStorage.key(i);
-            
-        const name = this.list[i].name;
-		const lenses = this.list[i].lenses;
-		const price = this.list[i].price;
-		const _id = this.list[i]._id;
-          }
-       
-        itemContainer.innerHTML = 
-        `<tr>
-        <td>${name}</td>
-        <td>${lenses}</td>
-        <td>${price}€</td>`
-        
-
+        const itemContainer = document.createElement("table");
         itemContainer.setAttribute('class', `${this.order}`);
-        // button to delete item
-        const buttoncart = document.createElement("button"); 
-        buttoncart.setAttribute("class", "btn w-25");
-        buttoncart.textContent = "Retirer cet article"; 
-        itemContainer.appendChild(buttoncart); 
-        const productId = this.item._id; 
-        buttoncart.addEventListener("click", function(event){ 
-            localStorage.removeItem(productId); 
-            // window.history.go(); 
-            itemContainer.textContent="Votre panier est vide"; 
-            event.stopPropagation(); 
-            });
-           
-            
 
-        return itemContainer; 
-    } 
+        for (let key in this.list) {
+            let item = this.list[key];
+
+            let itemNode = document.createElement('tr');
+            itemNode.innerHTML =
+                `<th>Produit :</th>
+               
+                <td>${item.product.name}</td>
+                <th>Prix :</th>
+ 
+        <td>${item.product.price / 100 + ' €'}</td>`;
+
+
+        /*Total cart : */
+
+        const totalCartPrice = document.createElement("div");
+        const priceTotal = [];
+        for (let key in this.list) {
+            let item = this.list[key];
+            priceTotal.push(item.product.price)};
+
+            if (priceTotal.length >0){
+                const reducer = (accumulator, currentValue)=> accumulator + currentValue; 
+                const totalOrder = priceTotal.reduce(reducer); 
+                totalCartPrice.innerHTML = `Total de votre commande = ${totalOrder / 100 } €`; 
+            itemContainer.appendChild(totalCartPrice);
+
+
+               /*Delete product button : */
+
+            let button = document.createElement('button');
+            button.setAttribute('class', 'btn');
+            button.textContent = 'Retirer cet article';
+            button.value = item.product._id;
+            itemNode.appendChild(button);
+
+            itemContainer.appendChild(itemNode);
+        }
+    }
+        return itemContainer;
+    }
 }
-
-
-
-// class PriceView {
-//     constructor (prix) {
-//         this.prix = prix; 
-//     }
-//     render(){
-//         const number = this.prix;
-//         const numberToString = number.toString(); 
-//         const price = numberToString.replace("00", ",00"); 
-//         return price;
-//     }
-// }
-
-
-
-
-
-
-
 
 
 
