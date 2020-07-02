@@ -10,6 +10,16 @@ document.forms['validForm'].addEventListener("submit", function (e) {
 
     let inputs = this;
 
+        const contact= {}; 
+        contact.firstName = this.elements.firstName.value; 
+        contact.lastName = this.elements.lastName.value;
+        contact.address = this.elements.address.value;
+        contact.city = this.elements.city.value;
+        contact.email = this.elements.email.value;
+        event.preventDefault(); 
+        event.stopPropagation(); 
+        onSubmit(contact); 
+
 
     for (let i = 0; i < inputs.length; i++) {
         if (!inputs[i].value) {
@@ -23,8 +33,16 @@ document.forms['validForm'].addEventListener("submit", function (e) {
         document.getElementById("erreur").innerHTML = erreur;
         return false;
     } else {
-        alert('formulaire envoyé');
-        document.location.href = 'confirmation.html';
+        api.save(
+            (result) => {
+                const response = JSON.parse(result); 
+                localStorage.setItem("orderId", JSON.stringify(response.orderId)); 
+                localStorage.setItem("firstName", JSON.stringify(response.contact.firstName)); 
+                localStorage.setItem("lastName", JSON.stringify(response.contact.lastName)); 
+                document.location.href="confirmation.html"; 
+           }
+       )
+        
     }
 
 

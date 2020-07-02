@@ -7,6 +7,7 @@ class CartController {
     constructor() {
 
         this.storage = new ListStorage();
+        console.log(this.storage);
         const cartView = new CartView(this.storage, 'order');
 
         const items = cartView.render();
@@ -43,8 +44,14 @@ class View {
 class CartView extends View {
     constructor(storage, order) {
         super();
-        this.list = storage.list;
+        this.list = storage.list || [];
         this.order = order;
+       
+        this.total = Object.values(this.list).map(item=> item.product.price).reduce((acc,cur)=> acc+cur,0);
+        console.log(Object.values(this.list));
+        console.log(this.total);
+        
+        
 
     }
     render() {
@@ -60,24 +67,15 @@ class CartView extends View {
                 `<th>Produit :</th>
                
                 <td>${item.product.name}</td>
+             
+                
                 <th>Prix :</th>
  
         <td>${item.product.price / 100 + ' €'}</td>`;
 
 
-        /*Total cart : */
+       
 
-        const totalCartPrice = document.createElement("div");
-        const priceTotal = [];
-        for (let key in this.list) {
-            let item = this.list[key];
-            priceTotal.push(item.product.price)};
-
-            if (priceTotal.length >0){
-                const reducer = (accumulator, currentValue)=> accumulator + currentValue; 
-                const totalOrder = priceTotal.reduce(reducer); 
-                totalCartPrice.innerHTML = `Total de votre commande = ${totalOrder / 100 } €`; 
-            itemContainer.appendChild(totalCartPrice);
 
 
                /*Delete product button : */
@@ -89,8 +87,18 @@ class CartView extends View {
             itemNode.appendChild(button);
 
             itemContainer.appendChild(itemNode);
-        }
+        
     }
+     /*Total cart : */
+
+     const totalCartPrice = document.createElement("div");
+
+         if (this.total){
+             
+             totalCartPrice.innerHTML = `Total de votre commande = ${this.total / 100 } €`; 
+             
+         itemContainer.appendChild(totalCartPrice);
+         }
         return itemContainer;
     }
 }

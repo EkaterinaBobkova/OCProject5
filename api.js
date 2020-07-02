@@ -29,8 +29,12 @@ get(url) {
     this.request.setRequestHeader('Content-Type', 'application/json')
     this.request.send();
 }
+post(url,body) {
+    this.request.open('POST', url, true);
+    this.request.setRequestHeader('Content-Type', 'application/json')
+    this.request.send(body);
 }
-
+}
 
 
 
@@ -48,4 +52,10 @@ class Api {
         })
         apiRequest.get("http://localhost:3000/api/cameras/"+id);
     }
+    save(callback,body){
+        const apiRequest= new Request(function(response) {
+            callback(response);
+        })
+        apiRequest.post("http://localhost:3000/api/cameras/"+id,body);
+}
 }
