@@ -242,8 +242,22 @@ button {
     flex-direction: column;
     align-items: center;
     margin: 40px;
+    text-align: center;
+    border-collapse:collapse;
+
 }
 
+th, td {
+    border:2px solid rgb(66, 8, 42);
+    padding: 20px;
+    }
+   td {
+    text-align:center;
+  
+    }
+   caption {
+    font-weight:bold
+    }
 
 a {
     color: rgb(66, 8, 42);
@@ -258,6 +272,8 @@ a:hover {
 
 
 .btn {
+    margin-top: 20px;
+    margin-bottom: 10px;
     background-color: hsl(280, 63%, 22%) !important;
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6f2195", endColorstr="#43145b");
@@ -273,4 +289,4 @@ a:hover {
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.23);
     -webkit-font-smoothing: antialiased;
   }
-  Some Examples! (you can probably do better than these, though)
+ 

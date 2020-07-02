@@ -38,65 +38,17 @@
 
   <div id="presentation">
          <img src="images/fondimg.jpg" class="img-fluid" alt="appareil photo vintage">
-        <h1 id="bannerText">Pour passer votre commande : </h1>
+        <h1 id="bannerText">Merci ! Votre commande est en cours de préparation </h1>
   </div>
     
 
 
-  <p class="text-center"><a class="text-decoration-none" href="index.html">Continuer mes achats</a></p>
+  <p class="text-center"><a class="text-decoration-none" href="index.html">Retour à la boutique</a></p>
 
   
   
-    <div id="productOrder"><!-- panier --></div>
-    
-
-
-    <div class="formPanier">
-
-      <p>Renseignez le formulaire ci-dessous : </p>
-
-      <form name="validForm">
-        <div class="form-row">
-
-         
-
-          <div class="col-sm-6 my-1 px-3">
-            <label for="lastName" >Nom :</label>
-            <input type="text" name="lastName"  class="form-control"  />
-          </div>
-
-          <div class="col-sm-6 my-1 px-3">
-            <label for="firstName">Prénom :</label>
-            <input type="text" name="firstName" class="form-control" />
-                    </div>
-
-
-          <div class="col-sm-6 my-1 px-3">
-            <label for="address">Adresse de livraison :</label>
-            <input type="text" name="address"  class="form-control"  />
-          </div>
-
-          <div class="col-sm-6 my-1 px-3">
-            <label for="city">Ville :</label>
-            <input type="text" name="city"  class="form-control"  />
-          </div>
-  
-
-          <div class="col-sm-12 my-3 px-3">
-            <label for="email">Email :</label>
-            <input type="email" name="email"  class="form-control" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
-          </div>
-
-          <div class="col-sm-12">
-            <input type="submit" value = "Confirmer la commande"></input>
-          </div>
-
-          <p style = "color: red;" id="erreur"></p>
-
-        </div>  
-      </form>
-             
-    </div>
+    <div id="confirm"><!-- confirmation --></div>
+   
 
 
 
@@ -110,10 +62,9 @@
     </div>
   </footer>
 
-  
+  <script src="api.js"></script>
   <script src="storage.js"></script>
 
-  <script src="cart.js"></script>
   <script src="confirmation.js"></script>
 
 </main>
