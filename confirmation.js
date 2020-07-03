@@ -7,8 +7,8 @@ document.forms['validForm'].addEventListener("submit", function (e) {
         (result) => {
             const response = JSON.parse(result); 
             localStorage.setItem("orderId", JSON.stringify(response.orderId)); 
-            localStorage.setItem("firstName", JSON.stringify(response.contact.firstName)); 
-            localStorage.setItem("lastName", JSON.stringify(response.contact.lastName)); 
+            localStorage.setItem("firstName", JSON.stringify(response.firstName)); 
+            localStorage.setItem("lastName", JSON.stringify(response.lastName)); 
             
        }
    )
