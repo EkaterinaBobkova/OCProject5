@@ -63,33 +63,33 @@
 
           <div class="col-sm-6 my-1 px-3">
             <label for="lastName" >Nom :</label>
-            <input type="text" name="lastName"  class="form-control"  />
+            <input type="text" name="lastName"  id="lastName" class="form-control"  />
           </div>
 
           <div class="col-sm-6 my-1 px-3">
             <label for="firstName">Prénom :</label>
-            <input type="text" name="firstName" class="form-control" />
+            <input type="text" name="firstName" id="firstName" class="form-control" />
                     </div>
 
 
           <div class="col-sm-6 my-1 px-3">
             <label for="address">Adresse de livraison :</label>
-            <input type="text" name="address"  class="form-control"  />
+            <input type="text" name="address"  id="address" class="form-control"  />
           </div>
 
           <div class="col-sm-6 my-1 px-3">
             <label for="city">Ville :</label>
-            <input type="text" name="city"  class="form-control"  />
+            <input type="text" name="city"  id="city" class="form-control"  />
           </div>
   
 
           <div class="col-sm-12 my-3 px-3">
             <label for="email">Email :</label>
-            <input type="email" name="email"  class="form-control" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
+            <input type="email" name="email" id="email"  class="form-control" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
           </div>
 
           <div class="col-sm-12">
-            <input type="submit" value = "Confirmer la commande"></input>
+            <input type="submit" value = "Confirmer la commande" id="submitBtn"></input>
           </div>
 
           <p style = "color: red;" id="erreur"></p>

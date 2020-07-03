@@ -56,6 +56,6 @@ class Api {
         const apiRequest= new Request(function(response) {
             callback(response);
         })
-        apiRequest.post("http://localhost:3000/api/cameras/"+id,body);
+        apiRequest.post("http://localhost:3000/api/cameras/order/"+id,body);
 }
 }

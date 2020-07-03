@@ -16,7 +16,7 @@ class CartController {
         items.addEventListener('click', function (e) {
             var elem = e.target;
             if (elem.tagName.toLowerCase() === 'button') {
-                elem.textContent = 'Votre panier est vide';
+                elem.textContent = 'Article supprimé';
                 e.stopPropagation(); 
 
                 tt.storage.delete(elem.value);
@@ -101,6 +101,9 @@ class CartView extends View {
          }
         return itemContainer;
     }
+
+
+    
 }
 
 

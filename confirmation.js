@@ -3,22 +3,21 @@
 
 
 document.forms['validForm'].addEventListener("submit", function (e) {
-
+    api.save(
+        (result) => {
+            const response = JSON.parse(result); 
+            localStorage.setItem("orderId", JSON.stringify(response.orderId)); 
+            localStorage.setItem("firstName", JSON.stringify(response.contact.firstName)); 
+            localStorage.setItem("lastName", JSON.stringify(response.contact.lastName)); 
+            
+       }
+   )
 
     let erreur;
 
 
     let inputs = this;
 
-        const contact= {}; 
-        contact.firstName = this.elements.firstName.value; 
-        contact.lastName = this.elements.lastName.value;
-        contact.address = this.elements.address.value;
-        contact.city = this.elements.city.value;
-        contact.email = this.elements.email.value;
-        event.preventDefault(); 
-        event.stopPropagation(); 
-        onSubmit(contact); 
 
 
     for (let i = 0; i < inputs.length; i++) {
@@ -33,15 +32,15 @@ document.forms['validForm'].addEventListener("submit", function (e) {
         document.getElementById("erreur").innerHTML = erreur;
         return false;
     } else {
-        api.save(
-            (result) => {
-                const response = JSON.parse(result); 
-                localStorage.setItem("orderId", JSON.stringify(response.orderId)); 
-                localStorage.setItem("firstName", JSON.stringify(response.contact.firstName)); 
-                localStorage.setItem("lastName", JSON.stringify(response.contact.lastName)); 
+
+        let orderId = localStorage.getItem("orderId"); 
+                let totalPrice = localStorage.getItem("totalPrice"); 
+                document.getElementById("costOrder").textContent = totalPrice + "€"; 
+                document.getElementById("idOrder").textContent = orderId;
+
                 document.location.href="confirmation.html"; 
-           }
-       )
+                localStorage.clear();
+      
         
     }
 
