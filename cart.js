@@ -26,6 +26,7 @@ class CartController {
 
         document.getElementById('productOrder').appendChild(items);
     }
+    
 }
 
 
@@ -98,6 +99,11 @@ class CartView extends View {
              totalCartPrice.innerHTML = `Total de votre commande = ${this.total / 100 } €`; 
              
          itemContainer.appendChild(totalCartPrice);
+         }
+
+
+         if(this.total == 0) {
+            itemContainer.textContent="Votre panier est vide"; 
          }
         return itemContainer;
     }
