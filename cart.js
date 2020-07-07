@@ -5,12 +5,34 @@ console.log(document.getElementById('productOrder'));
 
 class CartController {
     constructor() {
-
+        
+        
         this.storage = new ListStorage();
         console.log(this.storage);
         const cartView = new CartView(this.storage, 'order');
 
         const items = cartView.render();
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+        const validForm = document.getElementById('validForm');
+        const contact = {name:validForm['firstName'].value, lastName:validForm['lastName'].value, address:validForm['address'].value, city:validForm['city'].value, email:validForm['email'].value}
+        console.log(contact);
+        const products = Object.keys(this.storage.list);
+        console.log(products);
+        const api = new Api();
+        api.save((result) => {
+        console.log(result);
+        }, {
+            contact,
+            products
+        }
+        document.location.href="confirmation.html"; 
+        )
+
+
+
+        } );
 
         let tt = this;
         items.addEventListener('click', function (e) {
