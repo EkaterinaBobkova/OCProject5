@@ -27,7 +27,6 @@ class CartController {
             contact,
             products
         }
-        document.location.href="confirmation.html"; 
         )
 
 
