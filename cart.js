@@ -16,7 +16,7 @@ class CartController {
         submitBtn.addEventListener('click', (event) => {
             event.preventDefault();
         const validForm = document.getElementById('validForm');
-        const contact = {name:validForm['firstName'].value, lastName:validForm['lastName'].value, address:validForm['address'].value, city:validForm['city'].value, email:validForm['email'].value};
+        const contact = {lastName:validForm['lastName'].value, firstName:validForm['firstName'].value, address:validForm['address'].value, city:validForm['city'].value, email:validForm['email'].value}
         console.log(contact);
         const products = Object.keys(this.storage.list);
         console.log(products);
@@ -28,8 +28,6 @@ class CartController {
             products
         }
         );
-
-
 
         } );
 
