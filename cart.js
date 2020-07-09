@@ -33,14 +33,7 @@ class CartController {
             const products = Object.keys(this.storage.list);
             console.log(products);
             
-            const api = new Api();
-            api.save((result) => {
-                console.log(result);
-            }, {
-                contact,
-                products
-            }
-            );
+        
 
             // form verification
             let erreur;
@@ -59,10 +52,21 @@ class CartController {
                 document.getElementById("erreur").innerHTML = erreur;
                 return false;
             } else {
-
-                document.location.href = 'confirmation.html'
-                
-            }
+                const api = new Api();
+                        api.save((result) => {
+                            console.log(result);
+                            const response = JSON.parse(result); 
+                                localStorage.setItem("orderId", JSON.stringify(response.orderId)); 
+                                localStorage.setItem("firstName", JSON.stringify(response.contact.firstName));
+                                localStorage.setItem("lastName", JSON.stringify(response.contact.lastName)); 
+                              
+                        }, {
+                            contact,
+                            products
+                        }
+                        );
+                        document.location.href="confirmation.html"; 
+                        }
         });
 
         document.getElementById('productOrder').appendChild(items);
