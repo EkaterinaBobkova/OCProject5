@@ -291,10 +291,11 @@ a:hover {
   }
  
 
-  #confirm {
+  #confirm, #thankYouNote {
     color: rgb(66, 8, 42);
     font-weight: bold;
     font-size: 1.5em;
+    text-align: center;
   }
 
   h3{

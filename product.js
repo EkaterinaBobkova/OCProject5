@@ -28,12 +28,7 @@ class DetailController {
 }
 
 
-class View {
-    render() {
 
-    }
-
-}
 
 class ItemView extends View {
     constructor(item, card, onSubmit) {
@@ -79,6 +74,7 @@ class ItemView extends View {
         };
 
 
+        
 
         const formContainer = document.createElement('form')
 

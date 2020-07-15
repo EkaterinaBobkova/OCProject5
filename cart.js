@@ -55,28 +55,24 @@ class CartController {
                 const api = new Api();
                         api.save((result) => {
                             console.log(result);
-                            const response = JSON.parse(result); 
-                                localStorage.setItem("orderId", JSON.stringify(response.orderId)); 
-                                localStorage.setItem("firstName", JSON.stringify(response.contact.firstName));
-                                localStorage.setItem("lastName", JSON.stringify(response.contact.lastName)); 
+                            // const response = JSON.parse(result); 
+                                localStorage.setItem("orderId", JSON.stringify(result.orderId)); 
+                                localStorage.setItem("firstName", JSON.stringify(result.contact.firstName));
+                                localStorage.setItem("lastName", JSON.stringify(result.contact.lastName)); 
+                                
+                        document.location.href="confirmation.html"; 
                               
                         }, {
                             contact,
                             products
                         }
                         );
-                        document.location.href="confirmation.html"; 
+
                         }
         });
 
         document.getElementById('productOrder').appendChild(items);
     }
-
-}
-
-
-class View {
-    render() { }
 
 }
 

@@ -77,12 +77,7 @@ const mock = [
     }
 
 
-    class View {
-     render()    {
-         
-     }
-
-    }
+  
 
 
 
@@ -136,10 +131,6 @@ const mock = [
             
             itemContainer.setAttribute('class', `${this.card}`)
 
-
-        
-
-           
             return itemContainer;
         }
     }

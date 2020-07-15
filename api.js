@@ -16,7 +16,7 @@ class Request {
     }
 
     onReadyStateChange() {
-        if (this.request.readyState == XMLHttpRequest.DONE && this.request.status == 200) {
+        if (this.request.readyState == XMLHttpRequest.DONE && this.request.status >= 200 && this.request.status < 400) {
             this.onSuccess(JSON.parse(this.request.responseText));
            
             console.log("Connection established");
