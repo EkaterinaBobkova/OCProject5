@@ -59,7 +59,7 @@ class CartController {
                 const api = new Api();
                 api.save((result) => {
                     console.log(result);
-                    // const response = JSON.parse(result); 
+                   
                     localStorage.setItem("orderId", JSON.stringify(result.orderId));
                     localStorage.setItem("firstName", JSON.stringify(result.contact.firstName));
                     localStorage.setItem("lastName", JSON.stringify(result.contact.lastName));
@@ -85,6 +85,7 @@ class CartView extends View {
         super();
         this.list = storage.list || [];
         this.order = order;
+      
 
         this.total = Object.values(this.list).map(item => item.product.price).reduce((acc, cur) => acc + cur, 0);
         console.log(Object.values(this.list));
@@ -106,8 +107,11 @@ class CartView extends View {
                 `<th>Produit :</th>
                
                 <td>${item.product.name}</td>
+
+                <th>Objectif :</th>
+               
+                <td>${item.option}</td>
              
-                
                 <th>Prix :</th>
  
         <td>${item.product.price / 100 + ' €'}</td>`;
