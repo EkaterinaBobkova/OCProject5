@@ -9,20 +9,19 @@ class ConfirmController {
         const items = confirmView.render();
 
 
-
-
         document.getElementById('confirm').appendChild(items);
-      
+
         const orderConfirm = document.getElementById('thankYouNote')
 
         let firstName = JSON.parse(localStorage.getItem('firstName'));
         let lastName = JSON.parse(localStorage.getItem('lastName'));
+        let orderId = JSON.parse(localStorage.getItem('orderId'));
 
         if (!firstName) {
             document.location.href = 'index.html';
         }
 
-        orderConfirm.innerHTML += `<p>Merci ${firstName} ${lastName}  pour votre commande !</p>`
+        orderConfirm.innerHTML += `<p>Merci ${firstName} ${lastName}  pour votre commande !</p><br><p> Le numéro de commande à conserver : ${orderId}</p> `
 
 
 
@@ -34,7 +33,6 @@ class ConfirmController {
     }
 
 }
-
 
 
 
@@ -63,20 +61,13 @@ class ConfirmView extends View {
 
         if (this.total) {
 
-            totalCartPrice.innerHTML = `Total de vos achats = ${this.total / 100 } €`;
+            totalCartPrice.innerHTML = `Total de vos achats = ${this.total / 100} €`;
 
             itemContainer.appendChild(totalCartPrice);
         }
 
-
-
         return itemContainer;
     }
-
-
-
 }
-
-
 
 new ConfirmController()

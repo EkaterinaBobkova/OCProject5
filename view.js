@@ -1,6 +1,0 @@
-class View {
-    render()    {
-        
-    }
-
-   }

@@ -5,16 +5,16 @@ console.log(document.getElementById('product'));
 
 class DetailController {
     constructor() {
-    this.storage = new ListStorage();
+        this.storage = new ListStorage();
         const api = new Api();
         api.details(
-             (oneProduct) => {
+            (oneProduct) => {
                 const itemView = new ItemView(oneProduct, "card", (forms) => {
                     const optionValue = forms.selectOption.value;
                     console.log(oneProduct)
-                    this.storage.add(oneProduct._id,{
-                        product: oneProduct, 
-                        option:  optionValue 
+                    this.storage.add(oneProduct._id, {
+                        product: oneProduct,
+                        option: optionValue
 
                     })
                     document.location.href = "cart.html";
@@ -74,7 +74,7 @@ class ItemView extends View {
         };
 
 
-        
+
 
         const formContainer = document.createElement('form')
 
@@ -103,7 +103,7 @@ class ItemView extends View {
         buttonContainer.id = "link";
         buttonContainer.textContent = 'Ajout panier';
 
-       
+
 
         return itemContainer;
     }

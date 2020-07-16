@@ -1,4 +1,3 @@
-
 class ListStorage {
     constructor(listName = "list") {
         this.listName = listName;

@@ -1,8 +1,5 @@
 console.log(document.getElementById('productOrder'));
 
-
-
-
 class CartController {
     constructor() {
 
@@ -28,12 +25,18 @@ class CartController {
         submitBtn.addEventListener('click', (event) => {
             event.preventDefault();
             const validForm = document.getElementById('validForm');
-            const contact = { lastName: validForm['lastName'].value, firstName: validForm['firstName'].value, address: validForm['address'].value, city: validForm['city'].value, email: validForm['email'].value }
+            const contact = {
+                lastName: validForm['lastName'].value,
+                firstName: validForm['firstName'].value,
+                address: validForm['address'].value,
+                city: validForm['city'].value,
+                email: validForm['email'].value
+            }
             console.log(contact);
             const products = Object.keys(this.storage.list);
             console.log(products);
-            
-        
+
+
 
             // form verification
             let erreur;
@@ -41,8 +44,9 @@ class CartController {
 
             if (this.list === '' || validForm['lastName'].value === '' || validForm['firstName'].value === '' || validForm['address'].value === '' || validForm['city'].value === '' || validForm['email'].value === '') {
                 erreur = "Veuillez renseigner tous les champs";
-            } else if (!regex.test(validForm['email'].value)) { erreur = "Format de l'email n'est pas valide" }
-            else if (this.storage === null) {
+            } else if (!regex.test(validForm['email'].value)) {
+                erreur = "Format de l'email n'est pas valide"
+            } else if (this.storage === null) {
                 erreur = 'Veuillez faire vos achats';
             }
 
@@ -53,29 +57,27 @@ class CartController {
                 return false;
             } else {
                 const api = new Api();
-                        api.save((result) => {
-                            console.log(result);
-                            // const response = JSON.parse(result); 
-                                localStorage.setItem("orderId", JSON.stringify(result.orderId)); 
-                                localStorage.setItem("firstName", JSON.stringify(result.contact.firstName));
-                                localStorage.setItem("lastName", JSON.stringify(result.contact.lastName)); 
-                                
-                        document.location.href="confirmation.html"; 
-                              
-                        }, {
-                            contact,
-                            products
-                        }
-                        );
+                api.save((result) => {
+                    console.log(result);
+                    // const response = JSON.parse(result); 
+                    localStorage.setItem("orderId", JSON.stringify(result.orderId));
+                    localStorage.setItem("firstName", JSON.stringify(result.contact.firstName));
+                    localStorage.setItem("lastName", JSON.stringify(result.contact.lastName));
 
-                        }
+                    document.location.href = "confirmation.html";
+
+                }, {
+                    contact,
+                    products
+                });
+
+            }
         });
 
         document.getElementById('productOrder').appendChild(items);
     }
 
 }
-
 
 
 class CartView extends View {
@@ -143,11 +145,7 @@ class CartView extends View {
         }
         return itemContainer;
     }
-
-
-
 }
-
 
 
 new CartController()
