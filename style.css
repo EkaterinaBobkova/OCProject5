@@ -145,8 +145,7 @@ div.listPhotos  {
     }
     
 /*Header image banner*/
-    #presentation
-    {
+    #presentation{
      position: relative;
      width: 100%;
      text-align: center;
