@@ -5,6 +5,7 @@ console.log('id= ' + id);
 
 let _id = id;
 
+/*  REQUETE PRINCIPALE  */
 
 class Request {
     constructor(onSuccess, onError) {
@@ -36,7 +37,7 @@ class Request {
     }
 }
 
-
+/*  Classe pour comminiquer l'API et envoyer la requete  */
 
 class Api {
     list(callback) {

@@ -1,8 +1,6 @@
 console.log(document.getElementById('product'));
 
-
-
-
+/*  Logique métier, comminication avec l'API, souvegarde des éléments dans Local Storage  */
 class DetailController {
     constructor() {
         this.storage = new ListStorage();
@@ -15,20 +13,16 @@ class DetailController {
                     this.storage.add(oneProduct._id, {
                         product: oneProduct,
                         option: optionValue
-
                     })
                     document.location.href = "cart.html";
                 });
                 const itemElement = itemView.render();
                 document.getElementById('product').appendChild(itemElement);
-            }
-        )
-
+            })
     }
 }
 
-
-
+/*  Affichage des éléménts  */
 
 class ItemView extends View {
     constructor(item, card, onSubmit) {
@@ -40,24 +34,15 @@ class ItemView extends View {
     render() {
         console.info('section')
         const itemContainer = document.createElement('div');
-
-
         const titleView = new TitleView(this.item.name);
         itemContainer.appendChild(titleView.render());
-
         const imageView = new ImageView(this.item.imageUrl, this.item.description, 'classImg');
         itemContainer.appendChild(imageView.render());
-
-
         const descriptionView = new DescriptionView(this.item.description);
         itemContainer.appendChild(descriptionView.render());
-
         const priceView = new PriceView(this.item.price / 100 + ' €');
         itemContainer.appendChild(priceView.render());
         itemContainer.setAttribute('class', `${this.card}`);
-
-
-
 
         // lenses choise
         const labelOption = document.createElement("label");
@@ -72,15 +57,7 @@ class ItemView extends View {
             newOption.appendChild(newContent);
             selectOption.appendChild(newOption);
         };
-
-
-
-
         const formContainer = document.createElement('form')
-
-
-
-
 
         const buttonContainer = document.createElement('button')
         buttonContainer.addEventListener('click', () => {
@@ -90,40 +67,21 @@ class ItemView extends View {
             })
         })
 
-
-
         itemContainer.appendChild(labelOption);
         itemContainer.appendChild(selectOption);
-
-
-
 
         const buttonView = new ButtonView(this.item._id);
         itemContainer.appendChild(buttonContainer);
         buttonContainer.id = "link";
         buttonContainer.textContent = 'Ajout panier';
-
-
-
         return itemContainer;
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 class TitleView extends View {
     constructor(name) {
         super();
         this.name = name;
-
     }
 
     render() {
@@ -135,8 +93,6 @@ class TitleView extends View {
     }
 }
 
-
-
 class ImageView extends View {
     constructor(url, description, classImg) {
         super();
@@ -147,9 +103,6 @@ class ImageView extends View {
 
     render() {
         const imageContainer = document.createElement('img');
-
-
-
         imageContainer.setAttribute('src', this.url)
         imageContainer.setAttribute('alt', this.description);
         imageContainer.setAttribute('class', `${this.classImg}`)
@@ -158,29 +111,24 @@ class ImageView extends View {
     }
 }
 
-
 class DescriptionView extends View {
     constructor(contenu) {
         super();
         this.contenu = contenu;
-
     }
 
     render() {
         const descriptionContainer = document.createElement('p');
         descriptionContainer.innerHTML = `<span>${this.contenu}</span>`;
-
         return descriptionContainer;
 
     }
 }
 
-
 class PriceView extends View {
     constructor(prix) {
         super();
         this.prix = prix;
-
     }
 
     render() {
@@ -196,34 +144,8 @@ class ButtonView extends View {
     constructor(_id) {
         super();
         this._id = _id;
-
-    }
-
-    render() {
-        const buttonContainer = document.createElement('a');
-
-        buttonContainer.id = "linkProduct";
-        buttonContainer.href = 'cart.html?&id=' + this._id;
-
-        buttonContainer.textContent = "Ajouter au panier";
-
-
-
-
-
-
-
-        return buttonContainer;
-
     }
 }
-
-
-
-
-
-
-
 
 
 new DetailController()

@@ -1,5 +1,7 @@
 console.log(document.getElementById('app'));
 
+/*  Logique métier, communication avec API  */
+
 class ListController {
     constructor() {
 
@@ -9,11 +11,11 @@ class ListController {
                 const listView = new ListView(listProducts, 'listPhotos');
                 const listElement = listView.render();
                 document.getElementById('app').appendChild(listElement);
-            }
-        )
-
+            })
     }
 }
+
+/*  Classe qui sert à la récupération et affichage des éléments  */
 
 class ListView extends View {
     constructor(list, listPhotos) {
@@ -35,6 +37,8 @@ class ListView extends View {
         return listContainer;
     }
 }
+
+/*  Récupération des éléments titre, image, description, prix, bouton  */
 
 class ItemView extends View {
     constructor(item, card) {
@@ -69,48 +73,34 @@ class ItemView extends View {
     }
 }
 
-
-
 class ButtonView extends View {
     constructor(_id) {
         super();
         this._id = _id;
 
     }
-
+    /*  récupération de l'id du produit séléctionné  */
     render() {
         const buttonContainer = document.createElement('a');
-
         buttonContainer.id = "link";
         buttonContainer.href = 'produit.html?&id=' + this._id;
-
         buttonContainer.textContent = "Acheter";
-
-
         return buttonContainer;
-
     }
 }
-
-
 
 class TitleView extends View {
     constructor(name) {
         super();
         this.name = name;
-
     }
 
     render() {
         const titleContainer = document.createElement('h1');
         titleContainer.innerHTML = `<span>${this.name}</span>`;
-
         return titleContainer;
-
     }
 }
-
-
 
 class ImageView extends View {
     constructor(url, description, classImg) {
@@ -122,14 +112,10 @@ class ImageView extends View {
 
     render() {
         const imageContainer = document.createElement('img');
-
-
-
         imageContainer.setAttribute('src', this.url)
         imageContainer.setAttribute('alt', this.description);
         imageContainer.setAttribute('class', `${this.classImg}`)
         return imageContainer;
-
     }
 }
 
@@ -138,37 +124,27 @@ class DescriptionView extends View {
     constructor(contenu) {
         super();
         this.contenu = contenu;
-
     }
 
     render() {
         const descriptionContainer = document.createElement('p');
         descriptionContainer.innerHTML = `<span>${this.contenu}</span>`;
-
         return descriptionContainer;
-
     }
 }
-
 
 class PriceView extends View {
     constructor(prix) {
         super();
         this.prix = prix;
-
     }
 
     render() {
         const priceContainer = document.createElement('p');
         priceContainer.innerHTML = `<span>${this.prix}</span>`;
-
         return priceContainer;
-
     }
 }
-
-
-
 
 
 new ListController()

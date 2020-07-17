@@ -1,5 +1,7 @@
 console.log(document.getElementById('productOrder'));
 
+/*  Logique métier, communication avec API */
+
 class CartController {
     constructor() {
 
@@ -11,6 +13,8 @@ class CartController {
         const items = cartView.render();
 
         let tt = this;
+
+        /*  Suppression de l'article du panier */
         items.addEventListener('click', function (e) {
             var elem = e.target;
             if (elem.tagName.toLowerCase() === 'button') {
@@ -21,6 +25,7 @@ class CartController {
                 document.location.href = 'cart.html';
             }
         })
+        /*  A la soumission du formulaire on crée l'objet contact avec les données saisies et on récupère le tableau de produits appelé products*/
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.addEventListener('click', (event) => {
             event.preventDefault();
@@ -38,7 +43,7 @@ class CartController {
 
 
 
-            // form verification
+            // form validation
             let erreur;
             let regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
@@ -55,49 +60,45 @@ class CartController {
 
                 document.getElementById("erreur").innerHTML = erreur;
                 return false;
+
+                // si le formulaire est bien rempli on envoie la requete post, on souvegarde les données dans localStorage et on est redirigé vers la page confirmation
             } else {
                 const api = new Api();
                 api.save((result) => {
                     console.log(result);
-                   
+
                     localStorage.setItem("orderId", JSON.stringify(result.orderId));
                     localStorage.setItem("firstName", JSON.stringify(result.contact.firstName));
                     localStorage.setItem("lastName", JSON.stringify(result.contact.lastName));
-
                     document.location.href = "confirmation.html";
-
                 }, {
                     contact,
                     products
                 });
-
             }
         });
 
         document.getElementById('productOrder').appendChild(items);
     }
-
 }
-
 
 class CartView extends View {
     constructor(storage, order) {
         super();
         this.list = storage.list || [];
         this.order = order;
-      
 
+        // calcul du prix total
         this.total = Object.values(this.list).map(item => item.product.price).reduce((acc, cur) => acc + cur, 0);
         console.log(Object.values(this.list));
         console.log(this.total);
-
-
-
     }
     render() {
 
         const itemContainer = document.createElement("table");
         itemContainer.setAttribute('class', `${this.order}`);
+
+        // partie dynamique pour afficher le TB avec les infos produit depuis local Storage
 
         for (let key in this.list) {
             let item = this.list[key];
@@ -115,10 +116,6 @@ class CartView extends View {
                 <th>Prix :</th>
  
         <td>${item.product.price / 100 + ' €'}</td>`;
-
-
-
-
 
 
             /*Delete product button : */

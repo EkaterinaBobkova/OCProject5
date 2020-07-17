@@ -1,3 +1,5 @@
+/*  Logique métier pour récupérer les informations de local storage et afficher les données saisies dans le formulaire  */
+
 class ConfirmController {
     constructor() {
 
@@ -7,7 +9,6 @@ class ConfirmController {
         const confirmView = new ConfirmView(this.storage, 'order');
 
         const items = confirmView.render();
-
 
         document.getElementById('confirm').appendChild(items);
 
@@ -23,17 +24,13 @@ class ConfirmController {
 
         orderConfirm.innerHTML += `<p>Merci ${firstName} ${lastName}  pour votre commande !</p><br><p> Le numéro de commande à conserver : ${orderId}</p> `
 
-
-
         const returnShop = document.getElementById('returnShop');
         returnShop.addEventListener('click', (event) => {
 
             localStorage.clear();
         });
     }
-
 }
-
 
 
 class ConfirmView extends View {
@@ -45,8 +42,6 @@ class ConfirmView extends View {
         this.total = Object.values(this.list).map(item => item.product.price).reduce((acc, cur) => acc + cur, 0);
         console.log(Object.values(this.list));
         console.log(this.total);
-
-
 
     }
     render() {
