@@ -57,7 +57,6 @@ class CartController {
 
             if (erreur) {
 
-
                 document.getElementById("erreur").innerHTML = erreur;
                 return false;
 

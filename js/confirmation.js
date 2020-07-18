@@ -7,7 +7,6 @@ class ConfirmController {
         this.storage = new ListStorage();
         console.log(this.storage);
         const confirmView = new ConfirmView(this.storage, 'order');
-
         const items = confirmView.render();
 
         document.getElementById('confirm').appendChild(items);

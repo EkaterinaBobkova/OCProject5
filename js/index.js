@@ -77,7 +77,6 @@ class ButtonView extends View {
     constructor(_id) {
         super();
         this._id = _id;
-
     }
     /*  récupération de l'id du produit séléctionné  */
     render() {

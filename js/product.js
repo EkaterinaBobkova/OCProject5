@@ -87,9 +87,7 @@ class TitleView extends View {
     render() {
         const titleContainer = document.createElement('h1');
         titleContainer.innerHTML = `<span>${this.name}</span>`;
-
         return titleContainer;
-
     }
 }
 

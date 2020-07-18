@@ -1,5 +1,5 @@
   // Modèle pour souvegarder les éléments dans le localStorage
-
+  
   class ListStorage {
       constructor(listName = "list") {
           this.listName = listName;
