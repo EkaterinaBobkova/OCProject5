@@ -62,16 +62,16 @@ class CartController {
                 // si le formulaire est bien rempli on envoie la requete post, on souvegarde les données dans localStorage et on est redirigé vers la page confirmation
             } else {
                 const api = new Api();
-                api.save().then((result) => {
+                api.save({
+                    contact,
+                    products
+                }).then((result) => {
                     console.log(result);
 
                     localStorage.setItem("orderId", JSON.stringify(result.orderId));
                     localStorage.setItem("firstName", JSON.stringify(result.contact.firstName));
                     localStorage.setItem("lastName", JSON.stringify(result.contact.lastName));
                     document.location.href = "confirmation.html";
-                }, {
-                    contact,
-                    products
                 });
 
             }
