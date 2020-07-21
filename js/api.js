@@ -7,7 +7,7 @@ let _id = id;
 
 /*  REQUETE PRINCIPALE  */
 
-class Request {
+class MyRequest {
     constructor(onSuccess, onError) {
         this.request = new XMLHttpRequest();
         this.request.onreadystatechange = this.onReadyStateChange.bind(this);
@@ -42,7 +42,7 @@ class Request {
 class Api {
     list() {
         return new Promise((resolve, reject) => {
-            const apiRequest = new Request(function (response) {
+            const apiRequest = new MyRequest(function (response) {
                 resolve(response);
             })
             apiRequest.get("http://localhost:3000/api/cameras");
@@ -51,7 +51,7 @@ class Api {
 
     details() {
             return new Promise((resolve, reject) => {
-                    const apiRequest = new Request(function (response) {
+                    const apiRequest = new MyRequest(function (response) {
                         resolve(response);
                     })
                     apiRequest.get("http://localhost:3000/api/cameras/" + id);
@@ -59,7 +59,7 @@ class Api {
             }
             save(body) {
                 return new Promise((resolve, reject) => {
-                        const apiRequest = new Request(function (response) {
+                        const apiRequest = new MyRequest(function (response) {
                             resolve(response);
                         })
                         apiRequest.post("http://localhost:3000/api/cameras/order", JSON.stringify(body));
