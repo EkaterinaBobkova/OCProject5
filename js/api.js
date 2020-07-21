@@ -40,23 +40,29 @@ class Request {
 /*  Classe pour comminiquer l'API et envoyer la requete  */
 
 class Api {
-    list(callback) {
-        const apiRequest = new Request(function (response) {
-            callback(response);
+    list() {
+        return new Promise((resolve, reject) => {
+            const apiRequest = new Request(function (response) {
+                resolve(response);
+            })
+            apiRequest.get("http://localhost:3000/api/cameras");
         })
-        apiRequest.get("http://localhost:3000/api/cameras");
     }
 
-    details(callback) {
-        const apiRequest = new Request(function (response) {
-            callback(response);
-        })
-        apiRequest.get("http://localhost:3000/api/cameras/" + id);
-    }
-    save(callback, body) {
-        const apiRequest = new Request(function (response) {
-            callback(response);
-        })
-        apiRequest.post("http://localhost:3000/api/cameras/order", JSON.stringify(body));
-    }
-}
+    details() {
+            return new Promise((resolve, reject) => {
+                    const apiRequest = new Request(function (response) {
+                        resolve(response);
+                    })
+                    apiRequest.get("http://localhost:3000/api/cameras/" + id);
+                })
+            }
+            save(body) {
+                return new Promise((resolve, reject) => {
+                        const apiRequest = new Request(function (response) {
+                            resolve(response);
+                        })
+                        apiRequest.post("http://localhost:3000/api/cameras/order", JSON.stringify(body));
+                    })
+                }
+            }

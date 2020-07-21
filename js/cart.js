@@ -62,7 +62,7 @@ class CartController {
                 // si le formulaire est bien rempli on envoie la requete post, on souvegarde les données dans localStorage et on est redirigé vers la page confirmation
             } else {
                 const api = new Api();
-                api.save((result) => {
+                api.save().then((result) => {
                     console.log(result);
 
                     localStorage.setItem("orderId", JSON.stringify(result.orderId));
@@ -73,6 +73,7 @@ class CartController {
                     contact,
                     products
                 });
+
             }
         });
 

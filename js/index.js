@@ -6,12 +6,11 @@ class ListController {
     constructor() {
 
         const api = new Api();
-        api.list(
-            function (listProducts) {
-                const listView = new ListView(listProducts, 'listPhotos');
-                const listElement = listView.render();
-                document.getElementById('app').appendChild(listElement);
-            })
+        api.list().then((listProducts) => {
+            const listView = new ListView(listProducts, 'listPhotos');
+            const listElement = listView.render();
+            document.getElementById('app').appendChild(listElement);
+        })
     }
 }
 

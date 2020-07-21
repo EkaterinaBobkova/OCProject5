@@ -5,7 +5,7 @@ class DetailController {
     constructor() {
         this.storage = new ListStorage();
         const api = new Api();
-        api.details(
+        api.details().then(
             (oneProduct) => {
                 const itemView = new ItemView(oneProduct, "card", (forms) => {
                     const optionValue = forms.selectOption.value;
