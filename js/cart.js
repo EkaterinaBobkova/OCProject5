@@ -59,7 +59,6 @@ class CartController {
 
                 document.getElementById("erreur").innerHTML = erreur;
                 return false;
-
                 // si le formulaire est bien rempli on envoie la requete post, on souvegarde les données dans localStorage et on est redirigé vers la page confirmation
             } else {
                 const api = new Api();

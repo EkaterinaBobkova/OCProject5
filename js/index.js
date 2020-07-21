@@ -68,7 +68,6 @@ class ItemView extends View {
         itemContainer.appendChild(buttonView.render());
 
         itemContainer.setAttribute('class', `${this.card}`)
-
         return itemContainer;
     }
 }
