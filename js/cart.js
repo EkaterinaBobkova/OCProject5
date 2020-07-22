@@ -51,7 +51,7 @@ class CartController {
                 erreur = "Veuillez renseigner tous les champs";
             } else if (!regex.test(validForm['email'].value)) {
                 erreur = "Format de l'email n'est pas valide"
-            } else if (this.storage === null) {
+            } else if (this.storage.list === null) {
                 erreur = 'Veuillez faire vos achats';
             }
 
@@ -142,6 +142,9 @@ class CartView extends View {
 
         if (this.total == 0) {
             itemContainer.textContent = "Votre panier est vide";
+            const formBlock = document.getElementById("formBlock");
+            formBlock.style.display = "none";
+
         }
         return itemContainer;
     }
