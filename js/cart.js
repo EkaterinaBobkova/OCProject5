@@ -51,9 +51,7 @@ class CartController {
                 erreur = "Veuillez renseigner tous les champs";
             } else if (!regex.test(validForm['email'].value)) {
                 erreur = "Format de l'email n'est pas valide"
-            } else if (this.storage.list === null) {
-                erreur = 'Veuillez faire vos achats';
-            }
+            } 
 
             if (erreur) {
 
