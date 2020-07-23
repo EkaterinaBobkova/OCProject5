@@ -1,10 +1,3 @@
-let params = new URLSearchParams(document.location.search);
-console.log(params);
-let id = params.get("id");
-console.log('id= ' + id);
-
-let _id = id;
-
 /*  REQUETE PRINCIPALE  */
 
 class MyRequest {
@@ -49,20 +42,20 @@ class Api {
         })
     }
 
-    details() {
-            return new Promise((resolve, reject) => {
-                    const apiRequest = new MyRequest(function (response) {
-                        resolve(response);
-                    })
-                    apiRequest.get("http://localhost:3000/api/cameras/" + id);
-                })
-            }
-            save(body) {
-                return new Promise((resolve, reject) => {
-                        const apiRequest = new MyRequest(function (response) {
-                            resolve(response);
-                        })
-                        apiRequest.post("http://localhost:3000/api/cameras/order", JSON.stringify(body));
-                    })
-                }
-            }
+    details(id) {
+        return new Promise((resolve, reject) => {
+            const apiRequest = new MyRequest(function (response) {
+                resolve(response);
+            })
+            apiRequest.get("http://localhost:3000/api/cameras/" + id);
+        })
+    }
+    save(body) {
+        return new Promise((resolve, reject) => {
+            const apiRequest = new MyRequest(function (response) {
+                resolve(response);
+            })
+            apiRequest.post("http://localhost:3000/api/cameras/order", JSON.stringify(body));
+        })
+    }
+}

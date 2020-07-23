@@ -5,7 +5,14 @@ class DetailController {
     constructor() {
         this.storage = new ListStorage();
         const api = new Api();
-        api.details().then(
+
+        /* recuperation de l'id produit*/
+        let params = new URLSearchParams(document.location.search);
+        console.log(params);
+        let id = params.get("id");
+        console.log('id= ' + id);
+
+        api.details(id).then(
             (oneProduct) => {
                 const itemView = new ItemView(oneProduct, "card", (forms) => {
                     const optionValue = forms.selectOption.value;
@@ -69,8 +76,8 @@ class ItemView extends View {
 
         itemContainer.appendChild(labelOption);
         itemContainer.appendChild(selectOption);
-
-        const buttonView = new ButtonView(this.item._id);
+        const idProduct = this.item._id;
+        const buttonView = new ButtonView(idProduct);
         itemContainer.appendChild(buttonContainer);
         buttonContainer.id = "link";
         buttonContainer.textContent = 'Ajout panier';
