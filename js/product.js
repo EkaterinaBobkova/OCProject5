@@ -76,8 +76,8 @@ class ItemView extends View {
 
         itemContainer.appendChild(labelOption);
         itemContainer.appendChild(selectOption);
-        const idProduct = this.item._id;
-        const buttonView = new ButtonView(idProduct);
+      
+        const buttonView = new ButtonView(this.item._id);
         itemContainer.appendChild(buttonContainer);
         buttonContainer.id = "link";
         buttonContainer.textContent = 'Ajout panier';
